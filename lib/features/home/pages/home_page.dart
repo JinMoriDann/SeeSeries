@@ -16,8 +16,8 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  MovieModel? recomedation;
-  List<MovieModel> listofmovies = [];
+  SerieModel? recomedation;
+  List<SerieModel> listofmovies = [];
 
   @override
   void initState() {
@@ -26,7 +26,7 @@ class _HomePageState extends State<HomePage> {
   }
 
   Future _loadmovies() async {
-    List<MovieModel> _listOfMovies = await MoviesFetchService().fecthMovies();
+    List<SerieModel> _listOfMovies = await MoviesFetchService().fecthMovies();
 
     final randomIndex = Random().nextInt(_listOfMovies.length);
 
@@ -51,8 +51,10 @@ class _HomePageState extends State<HomePage> {
           Padding(
             padding: const EdgeInsets.only(right: 8.0),
             child: IconButton(
-              onPressed: () {},
-              icon: Icon(Icons.logout, color: Colors.white),
+              onPressed: () {
+                Navigator.pushNamed(context, '/conf');
+              },
+              icon: Icon(Icons.build, color: Colors.white),
             ),
           ),
         ],

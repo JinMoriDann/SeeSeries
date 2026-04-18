@@ -6,7 +6,7 @@ import 'package:seemovies/features/home/models/movie_model.dart';
 class MoviesFetchService {
   static const String baseUrl = 'https://api.tvmaze.com';
 
-  Future<List<MovieModel>> fecthMovies() async {
+  Future<List<SerieModel>> fecthMovies() async {
     final response = await http.get(
       Uri.parse("$baseUrl/shows"),
       headers: {'Accept': 'application/json'},
@@ -14,7 +14,7 @@ class MoviesFetchService {
     if (response.statusCode == 200) {
       final List data = jsonDecode(response.body);
 
-      return data.map((e) => MovieModel.fromJson(e)).toList();
+      return data.map((e) => SerieModel.fromJson(e)).toList();
     } else {
       throw Exception('Failed to load movies');
     }

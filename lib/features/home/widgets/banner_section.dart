@@ -3,7 +3,7 @@ import 'package:seemovies/core/themes/app_colors.dart';
 import 'package:seemovies/features/home/models/movie_model.dart';
 
 class BannerSectionn extends StatefulWidget {
-  final MovieModel recomedation;
+  final SerieModel recomedation;
   const BannerSectionn({super.key, required this.recomedation});
 
   @override

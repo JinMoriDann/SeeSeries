@@ -1,4 +1,4 @@
-class MovieModel {
+class SerieModel {
   final int id;
   final String url;
   final String name;
@@ -8,7 +8,7 @@ class MovieModel {
   final String urlImageOriginal;
   final String summary;
 
-  const MovieModel({
+  const SerieModel({
     required this.id,
     required this.url,
     required this.name,
@@ -19,8 +19,8 @@ class MovieModel {
     required this.summary,
   });
 
-  factory MovieModel.fromJson(Map<String, dynamic> json) {
-    return MovieModel(
+  factory SerieModel.fromJson(Map<String, dynamic> json) {
+    return SerieModel(
       id: json['id'] ?? 0,
       url: json['url'] ?? '',
       name: json['name'] ?? '',

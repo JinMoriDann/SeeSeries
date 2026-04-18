@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:seemovies/features/auth/register/pages/register_page.dart';
+import 'package:seemovies/features/conf/pages/conf_page.dart';
 import 'package:seemovies/features/home/pages/home_page.dart';
 import 'package:seemovies/features/auth/login/pages/login_page.dart';
 
@@ -18,6 +19,7 @@ class SeeMovieApp extends StatelessWidget {
         '/': (context) => LoginPage(),
         '/register': (context) => RegisterPage(),
         '/home': (context) => HomePage(),
+        '/conf': (context) => ConfPage()
       },
     );
   }
