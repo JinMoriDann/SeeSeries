@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:seemovies/core/themes/app_colors.dart';
+import 'package:seemovies/core/services/firestore_service.dart';
+import 'package:seemovies/features/about_serie/widgets/about_selected_serie.dart';
+import 'package:seemovies/features/app_shell/app_shell.dart';
 import 'package:seemovies/features/home/models/movie_model.dart';
+import 'package:seemovies/features/reviews/models/review_model.dart';
+import 'package:seemovies/features/reviews/pages/create_review.dart';
+import 'package:seemovies/features/reviews/pages/reviews.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class AboutSeriePage extends StatefulWidget {
   final SerieModel serieSelected;
@@ -11,38 +17,47 @@ class AboutSeriePage extends StatefulWidget {
 }
 
 class _AboutSeriePageState extends State<AboutSeriePage> {
+  List<ReviewModel> reviews = [];
+  String userId = '';
+
+  @override
+  void initState() {
+    super.initState();
+    _loadReviews(widget.serieSelected.id);
+    _loadUserData();
+  }
+
+  Future<void> _loadReviews(serieId) async {
+    final _reviews = await FirestoreService.getReviews(serieId);
+    setState(() {
+      reviews = _reviews;
+    });
+  }
+
+  Future<void> _loadUserData() async {
+    final prefs = await SharedPreferences.getInstance();
+    setState(() {
+      userId = prefs.getString('userUid')!;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Column(
-        children: [
-          Text(
-            widget.serieSelected.name,
-            style: TextStyle(
-              color: AppColors().primary,
-              fontSize: 24,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-          Row(
-            children: [
-              Column(
-                children: [
-                  Container(
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                        image: NetworkImage(
-                          widget.serieSelected.urlImageOriginal,
-                        ),
-                      ),
-                    ),
-                  ),
-                  Text('Avaliation: ${widget.serieSelected.rating}'),
-                ],
-              ),
+    final alreadyReviewed = reviews.any((r) => r.uid == userId);
+    return AppShel(
+      title: 'About',
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            AboutSelectedSerie(serieSelected: widget.serieSelected),
+            Padding(padding: const EdgeInsets.all(16), child: Divider()),
+            if (!alreadyReviewed) ...[
+              CreateReview(serieId: widget.serieSelected.id),
+              Padding(padding: const EdgeInsets.all(16), child: Divider()),
             ],
-          ),
-        ],
+            Reviews(reviews: reviews),
+          ],
+        ),
       ),
     );
   }

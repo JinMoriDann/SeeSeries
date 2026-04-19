@@ -12,8 +12,9 @@ class RegisterPage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
+            SizedBox(height: 100),
+            SizedBox(height: 150, child: Image.asset('images/logo_white.png')),
             SizedBox(height: 50),
-            SizedBox(height: 300, child: Image.asset('images/logo_white.png')),
             Padding(
               padding: const EdgeInsets.only(left: 24, right: 24),
               child: RegisterForm(),

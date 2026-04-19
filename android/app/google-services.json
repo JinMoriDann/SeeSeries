@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "617217816238",
+    "project_id": "seeseries-1a99f",
+    "storage_bucket": "seeseries-1a99f.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:617217816238:android:8753d1a38e3c229ee75f3f",
+        "android_client_info": {
+          "package_name": "com.example.seemovies"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBomP9FFR_KCPqMHPXk83O1_YY6Pu0CrfM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

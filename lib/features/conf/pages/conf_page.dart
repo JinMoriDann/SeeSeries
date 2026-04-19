@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:seemovies/core/themes/app_colors.dart';
+import 'package:seemovies/features/app_shell/app_shell.dart';
 import 'package:seemovies/features/conf/widgets/conf_form.dart';
 
 class ConfPage extends StatelessWidget {
@@ -7,18 +7,8 @@ class ConfPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: AppColors().primary,
-      appBar: AppBar(
-        backgroundColor: AppColors().primary,
-        leading: Icon(Icons.menu, color: AppColors().white),
-        title: TextButton(
-          onPressed: () {
-            Navigator.pushNamed(context, '/home');
-          },
-          child: Text("Configuration", style: TextStyle(color: Colors.white)),
-        ),
-      ),
+    return AppShel(
+      title: 'Settings',
       body: Center(
         child: Padding(padding: const EdgeInsets.all(32), child: ConfForm()),
       ),

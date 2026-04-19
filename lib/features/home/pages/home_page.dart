@@ -1,8 +1,6 @@
 import 'dart:math';
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:seemovies/core/themes/app_colors.dart';
+import 'package:seemovies/features/app_shell/app_shell.dart';
 import 'package:seemovies/features/home/models/movie_model.dart';
 import 'package:seemovies/features/home/services/movies_fetch_service.dart';
 import 'package:seemovies/features/home/widgets/banner_section.dart';
@@ -25,8 +23,9 @@ class _HomePageState extends State<HomePage> {
     _loadmovies();
   }
 
+
   Future _loadmovies() async {
-    List<SerieModel> _listOfMovies = await MoviesFetchService().fecthMovies();
+    List<SerieModel> _listOfMovies = await SeriesFetchService().fecthSeries();
 
     final randomIndex = Random().nextInt(_listOfMovies.length);
 
@@ -41,24 +40,8 @@ class _HomePageState extends State<HomePage> {
     if (recomedation == null) {
       return const Center(child: CircularProgressIndicator());
     }
-    return Scaffold(
-      backgroundColor: AppColors().primary,
-      appBar: AppBar(
-        backgroundColor: AppColors().primary,
-        leading: Icon(Icons.menu, color: AppColors().white),
-        title: Text("Home", style: TextStyle(color: Colors.white)),
-        actions: [
-          Padding(
-            padding: const EdgeInsets.only(right: 8.0),
-            child: IconButton(
-              onPressed: () {
-                Navigator.pushNamed(context, '/conf');
-              },
-              icon: Icon(Icons.build, color: Colors.white),
-            ),
-          ),
-        ],
-      ),
+    return AppShel(
+      title: 'Home',
       body: SingleChildScrollView(
         child: Column(
           children: [
